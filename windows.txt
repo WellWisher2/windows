@@ -14,17 +14,15 @@ public class SelectionSort {
 /**
 * @param args the command line arguments
 */
-static int size; // To read size of input elements
+static int size; 
 public static void main(String[] args) throws IOException
 {
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the number of elements to sorted: ( &gt;5000):&quot;);
 size = in.nextInt();
-//Declare an array of dimension &#39;size&#39;
 int inputArr [] = new int[size];
 genRandomNumbers(inputArr);
-//Sort the randomly generated numbers for best case, average case and worst case
-complexity
+
 long startTime = System.nanoTime();
 selection(inputArr,size-1);
 long estimatedTime = System.nanoTime() - startTime;
@@ -38,7 +36,7 @@ outA.close();
 System.out.println(&quot;The time complexity for best,average and worst case is &quot; +
 (estimatedTime/1000000.0)+ &quot; ms&quot;);
 }
-// Method for random number generation
+
 public static void genRandomNumbers(int inputArr[]) throws IOException
 {
 int number, count=0;
@@ -57,7 +55,7 @@ count++;
 out.close();
 System.out.println(&quot;The total numbers generated: &quot; + count );
 }
-// Method to
+
 public static void selection(int a[],int n)
 {
 
@@ -87,31 +85,22 @@ average case and best case.
 
 ---------------------------------------------------------------------------------------------------------------
 Program:-
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
-package quicksort;
-/**
-*
-* @author Dell
-*/
 
+package quicksort;
 
 import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
 public class QuickSort {
-static int size; // To read size of input elements
+static int size; 
 public static void main(String[] args) throws IOException{
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the number of elements to sorted: ( &gt;5000):&quot;);
 size = in.nextInt();
-//Declare an array of dimension &#39;size&#39;
+
 int inputArr [] = new int[size];
 genRandomNumbers(inputArr);
-//Sort the randomly generated numbers for average case and best case complexity
+
 long startTime = System.nanoTime();
 quickSort(inputArr,0,size-1);
 long estimatedTime = System.nanoTime() - startTime;
@@ -123,7 +112,7 @@ outA.println(inputArr[i]);
 outA.close();
 System.out.println(&quot;The time complexity for best case and average case is &quot; +
 (estimatedTime/1000000.0)+ &quot; ms&quot;);
-//Sort the sorted numbers for worst case complexity
+
 startTime = System.nanoTime();
 quickSort(inputArr,0,size-1);
 estimatedTime = System.nanoTime() - startTime;
@@ -131,7 +120,7 @@ estimatedTime = System.nanoTime() - startTime;
 System.out.println(&quot;The time complexity for worst case is &quot; +
 (estimatedTime/1000000.0)+ &quot; ms&quot;);
 }
-// Method to generate the Random Numbers
+
 public static void genRandomNumbers(int inputArr[]) throws IOException
 {
 int number, count=0;
@@ -147,7 +136,7 @@ count++;
 out.close();
 System.out.println(&quot;The total numbers generated: &quot; + count );
 }
-//Method for QuickSort
+
 public static void quickSort(int a[],int low,int high)
 {
 int j;
@@ -201,11 +190,7 @@ average case and best case.
 ----------------------------------------------------------------------------------------------------------------------
 
 Program:-
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+
 package mergesort;
 import java.util.Scanner;
 import java.util.Random;
@@ -218,18 +203,17 @@ public class MergeSort {
 /**
 * @param args the command line arguments
 */
-static int size; // To read size of input elements
+static int size; 
 public static void main(String[] args) throws IOException {
-// TODO code application logic here
+
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the number of elements to sorted: (&gt;5000):&quot;);
 size = in.nextInt();
-//Declare an array of dimension &#39;size&#39;
+
 
 int inputArr [] = new int[size];
 genRandomNumbers(inputArr);
-//Sort the randomly generated numbers for best case, average case and worst case
-complexity
+
 long startTime = System.nanoTime();
 mergeSort(inputArr,0,size-1);
 long estimatedTime = System.nanoTime() - startTime;
@@ -242,7 +226,7 @@ outA.close();
 System.out.println(&quot;The time complexity for best,average and worst case is &quot; +
 (estimatedTime/1000000.0)+ &quot; ms&quot;);
 }
-// Method for random number generation
+
 public static void genRandomNumbers(int inputArr[]) throws IOException
 {
 int number, count=0;
@@ -313,32 +297,22 @@ merge(a,low,mid,high);
 
 -------------------------------------------------------------------------------------------------------------------
 
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+
 package knapsackgreedy;
 import java.util.Scanner;
-/**
-*
 
-* @author Dell
-*/
 public class KnapsackGreedy {
-/**
-* @param args the command line arguments
-*/
+
 public static void main(String[] args) {
-// TODO code application logic here
+
 int nItems;
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the number of items: &quot;);
 nItems = in.nextInt();
-double W; /* capacity of the knapsack */
-double weight[] = new double[nItems]; // Weights of &#39;n&#39; items
-double value[] = new double[nItems]; // Values of &#39;n&#39; items
-double ratio[] = new double[nItems]; // ratio or density of &#39;n&#39;items
+double W; 
+double weight[] = new double[nItems]; 
+double value[] = new double[nItems]; 
+double ratio[] = new double[nItems]; 
 System.out.println(&quot;Enter the weights of the item&quot;);
 for (int i = 0; i&lt;nItems; i++)
 weight[i] = in.nextDouble();
@@ -355,13 +329,13 @@ computeMaxValue(W,weight,value,ratio));
 public static double computeMaxValue(double W,double weight[],double
 value[],double ratio[])
 {
-double cW = 0; //current weight
-double cV = 0; //current value
+double cW = 0; 
+double cV = 0; 
 System.out.print(&quot;\n Items considered are: &quot;);
 while (cW&lt;W)
 {
 int item = getNextItem(weight,value,ratio);
-// getnext highest ratio
+
 if (item == -1)
 {
 //No items left
@@ -373,20 +347,20 @@ if (cW + weight[item] &lt;= W)
 {
 cW += weight[item];
 cV += value[item];
-//mark as used for the getNext() (ratio) function
+
 ratio[item] = 0;
 }
 else
 {
 cV += (ratio[item] * (W - cW));
-// Break the value and add
+
 cW += (W - cW);
-break; //the knapsack is full
+break; 
 }
 }
 return cV;
 }
-//Method to get the next highest ratio
+
 public static int getNextItem(double weight[],double value[],double ratio[])
 {
 double highest = 0;
@@ -412,29 +386,19 @@ algorithm. Use Union-Find algorithms in your program.
 
 ---------------------------------------------------------------------------------------------------------------------
 
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+
 package kruskals;
 import java.util.*;
-/**
-*
-* @author Dell
 
-*/
 public class Kruskals {
-/**
-* @param args the command line arguments
-*/
+
 static int parent[];
 static int cost[][];
 public static void main(String[] args) {
-// TODO code application logic here
+
 int i,j,n,min,ne=1;
 int u=0,v=0,a=0,b=0,mincost=0;
-/* Scanner class to read values from console */
+
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the number of vertices/nodes in the graph&quot;);
 n = in.nextInt();
@@ -480,7 +444,7 @@ cost[a][b] = cost[b][a] = 999;
 }
 System.out.println(&quot;Minimum cost &quot; + mincost);
 }
-/* To find the parent of particular vertex */
+
 public static int findParent(int i)
 {
 while(parent[i]!=0)
@@ -489,8 +453,7 @@ i = parent[i];
 }
 return i;
 }
-/* To determine the cycle in the graph formed by selection of
-particular edge */
+
 public static int union(int i,int j)
 {
 if(i!=j)
@@ -510,24 +473,15 @@ algorithm.
 ---------------------------------------------------------------------------------------------------------------------
 
 Program:-
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+
 package prims;
 import java.util.*;
 
-/**
-*
-* @author Dell
-*/
+
 public class Prims {
-/**
-* @param args the command line arguments
-*/
+
 public static void main(String[] args) {
-// TODO code application logic here
+
 int i,j,k,n,source;
 int w[][] = new int[50][50];
 int visited [] = new int[20];
@@ -587,11 +541,7 @@ System.out.println(&quot;The total cost of minimum spanning tree is &quot;+total
 -----------------------------------------------------------------------------------------------------------------------
 
 
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+
 package knapsackdp;
 import java.util.Scanner;
 /**
@@ -600,16 +550,14 @@ import java.util.Scanner;
 */
 public class KnapSackDP {
 
-/**
-* @param args the command line arguments
-*/
+
 public static void main(String[] args) {
-// TODO code application logic here
+
 int i;
 int n; // No of items
 int W; // Capacity of the knapSack
-int wt[] = new int[10]; // Weights of &#39;n&#39; items
-int val[] = new int[10]; // Values of &#39;n&#39; items
+int wt[] = new int[10]; 
+int val[] = new int[10]; 
 
 Scanner in = new Scanner(System.in);
 
@@ -634,16 +582,16 @@ W = in.nextInt();
 System.out.println(&quot;The maximum value in knapsack of capacity &quot; + W +
 &quot; is: &quot;+knapSack(W, wt, val, n));
 }
-// Returns the maximum value that can be put in a knapsack of capacity W
+
 public static int knapSack(int W, int wt[], int val[], int n)
 {
 int i, j;
 int v[][] = new int[n+1][W+1];
 
-// Build table v[][] in bottom up manner
+
 for (i = 0; i &lt;= n; i++)
 {
-// j is the temporary capacity of knapsack during table building
+
 for (j = 0; j &lt;= W; j++)
 {
 if (i==0 || j==0)
@@ -679,7 +627,7 @@ static int x[] = new int[20];
 static int s[] = new int[20];
 static int d,flag=0;
 public static void main(String[] args) {
-// TODO code application logic here
+
 int i,n,sum=0;
 Scanner in = new Scanner(System.in);
 System.out.println(&quot;Enter the no of elements&quot;);
@@ -692,7 +640,7 @@ d = in.nextInt();
 for(i=1;i&lt;=n;i++) {
 sum = sum + s[i];
 }
-// Check for the problem instance not having the solution
+
 if(sum&lt;d || s[1]&gt;d) {
 System.out.println(&quot;The given problem instance does not
 have a solution&quot;);
@@ -708,7 +656,7 @@ if(flag ==0)
 System.out.println(&quot;No subset possible&quot;);
 System.exit(0);
 } }
-// Method to Calculate the Subset Sum
+
 public static void SumofSub(int m,int k,int r)
 {
 int i;
