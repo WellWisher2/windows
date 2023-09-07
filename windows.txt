@@ -707,6 +707,105 @@ System.out.println(&quot;The total cost of minimum spanning tree is &quot;+total
 
 -----------------------------------------------------------------------------------------------------------------------
 
+8) Write Java programs to implement All-Pairs Shortest Paths problem using Floyd&#39;s algorithm.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package floyds;
+import java.util.Scanner;
+
+/**
+*
+* @author Dell
+*/
+public class Floyds {
+
+/**
+* @param args the command line arguments
+*/
+public static void main(String[] args) {
+// TODO code application logic here
+int d [][] = new int[20][20];
+// Temporary 2-D array for calculation
+int w [][] = new int[20][20];
+// 2-D array to store weight/cost matrix
+int i,j,n;
+
+Scanner in = new Scanner(System.in);
+
+System.out.println(&quot;Enter the number of nodes/vertices&quot;);
+n = in.nextInt();
+
+System.out.println(&quot;Enter the Weight/cost matrix&quot;);
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+w[i][j] = in.nextInt();
+}
+}
+
+floyd(n,d,w);
+}
+public static void floyd(int n ,int d[][],int w[][])
+{
+int i,j,k;
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+d[i][j] = w[i][j];
+}
+}
+// Calculation of All-pair shortest paths
+for(k=1;k&lt;=n;k++)
+{
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+d[i][j] = min(d[i][j],d[i][k]+d[k][j]);
+}
+
+}
+}
+
+System.out.println(&quot;All pair shortest path matrix is&quot;);
+for(i=1;i&lt;=n;i++)
+{
+System.out.print(&quot;\t&quot;+i );
+}
+
+System.out.println(&quot;\n \t-------------------------------------- ------&quot;);
+for(i=1;i&lt;=n;i++)
+
+{
+System.out.print(i + &quot;|&quot;+ &quot;\t&quot;);
+for(j=1;j&lt;=n;j++)
+{
+System.out.print(d[i][j] + &quot;\t&quot;);
+}
+System.out.print(&quot;\n&quot;);
+}
+}
+// Method to find the minimum of two numbers
+public static int min(int a,int b)
+{
+if(a&lt;b)
+return a;
+
+else
+return b;
+}
+}
+
+----------------------------------------------------------------------------------------------------------------------
+
 
 10) Solve 0/1 Knapsack problem using Dynamic Programming method
 
