@@ -11,9 +11,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
 public class SelectionSort {
-/**
-* @param args the command line arguments
-*/
+
 static int size; 
 public static void main(String[] args) throws IOException
 {
@@ -147,7 +145,7 @@ quickSort(a,low,j-1);
 quickSort(a,j+1,high);
 }
 }
-//Method for Partition
+
 public static int partition(int a[],int low,int high)
 {
 int i,j,temp,pivot;
@@ -195,14 +193,9 @@ package mergesort;
 import java.util.Scanner;
 import java.util.Random;
 import java.io.*;
-/**
-*
-* @author Dell
-*/
+
 public class MergeSort {
-/**
-* @param args the command line arguments
-*/
+
 static int size; 
 public static void main(String[] args) throws IOException {
 
@@ -338,7 +331,7 @@ int item = getNextItem(weight,value,ratio);
 
 if (item == -1)
 {
-//No items left
+
 break;
 }
 
@@ -544,18 +537,15 @@ System.out.println(&quot;The total cost of minimum spanning tree is &quot;+total
 
 package knapsackdp;
 import java.util.Scanner;
-/**
-*
-* @author Dell
-*/
+
 public class KnapSackDP {
 
 
 public static void main(String[] args) {
 
 int i;
-int n; // No of items
-int W; // Capacity of the knapSack
+int n; 
+int W; 
 int wt[] = new int[10]; 
 int val[] = new int[10]; 
 
