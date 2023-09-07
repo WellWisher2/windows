@@ -1,0 +1,706 @@
+Sort a given set of n integer elements using Selection Sort method and compute its time
+complexity. Run the program for varied values of n&gt;5000 and record the time taken to sort.
+Plot a graph of the time taken versus n. The elements can be read from a file or can be
+generated using the random number generator. Demonstrate using C++/Java how the brute
+force method works along with its time complexity analysis: worst case, average case and
+best case.
+-----------------------------------------------------------------------------------------------------
+Program:-
+
+import java.util.Scanner;
+import java.util.Random;
+import java.io.*;
+public class SelectionSort {
+/**
+* @param args the command line arguments
+*/
+static int size; // To read size of input elements
+public static void main(String[] args) throws IOException
+{
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the number of elements to sorted: ( &gt;5000):&quot;);
+size = in.nextInt();
+//Declare an array of dimension &#39;size&#39;
+int inputArr [] = new int[size];
+genRandomNumbers(inputArr);
+//Sort the randomly generated numbers for best case, average case and worst case
+complexity
+long startTime = System.nanoTime();
+selection(inputArr,size-1);
+long estimatedTime = System.nanoTime() - startTime;
+PrintWriter outA = new PrintWriter(new File(&quot;ssort.txt&quot;));
+for(int i=0;i&lt;inputArr.length;i++)
+{
+outA.println(inputArr[i]);
+
+}
+outA.close();
+System.out.println(&quot;The time complexity for best,average and worst case is &quot; +
+(estimatedTime/1000000.0)+ &quot; ms&quot;);
+}
+// Method for random number generation
+public static void genRandomNumbers(int inputArr[]) throws IOException
+{
+int number, count=0;
+Random rand = new Random();
+PrintWriter out = new PrintWriter(new File(&quot;Mrandom.txt&quot;));
+while(count&lt;size)
+{
+
+number=rand.nextInt(size)+1;
+out.println(number);
+out.print(&quot; &quot;);
+inputArr[count]=number;
+
+count++;
+}
+out.close();
+System.out.println(&quot;The total numbers generated: &quot; + count );
+}
+// Method to
+public static void selection(int a[],int n)
+{
+
+for(int i=0; i&lt;=n;i++)
+{
+int j=i;
+for(int k=i+1;k&lt;=n;k++)
+{
+if(a[k]&lt;a[j])
+j=k;
+}
+int t=a[i];
+a[i]= a[j];
+a[j]=t;
+}
+}
+
+}
+------------------------------------------------------------------------------------------------------------
+
+2) Sort a given set of n integer elements using Quick Sort method and compute its time
+complexity. Run the program for varied values of n&gt;5000 and record the time taken to sort.
+Plot a graph of the time taken versus n. The elements can be read from a file or can be
+generated using the random number generator. Demonstrate using C++/Java how the
+divide-and-conquer method works along with its time complexity analysis: worst case,
+average case and best case.
+
+---------------------------------------------------------------------------------------------------------------
+Program:-
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package quicksort;
+/**
+*
+* @author Dell
+*/
+
+
+import java.util.Scanner;
+import java.util.Random;
+import java.io.*;
+public class QuickSort {
+static int size; // To read size of input elements
+public static void main(String[] args) throws IOException{
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the number of elements to sorted: ( &gt;5000):&quot;);
+size = in.nextInt();
+//Declare an array of dimension &#39;size&#39;
+int inputArr [] = new int[size];
+genRandomNumbers(inputArr);
+//Sort the randomly generated numbers for average case and best case complexity
+long startTime = System.nanoTime();
+quickSort(inputArr,0,size-1);
+long estimatedTime = System.nanoTime() - startTime;
+PrintWriter outA = new PrintWriter(new File(&quot;qsort.txt&quot;));
+for(int i=0;i&lt;inputArr.length;i++)
+{
+outA.println(inputArr[i]);
+}
+outA.close();
+System.out.println(&quot;The time complexity for best case and average case is &quot; +
+(estimatedTime/1000000.0)+ &quot; ms&quot;);
+//Sort the sorted numbers for worst case complexity
+startTime = System.nanoTime();
+quickSort(inputArr,0,size-1);
+estimatedTime = System.nanoTime() - startTime;
+
+System.out.println(&quot;The time complexity for worst case is &quot; +
+(estimatedTime/1000000.0)+ &quot; ms&quot;);
+}
+// Method to generate the Random Numbers
+public static void genRandomNumbers(int inputArr[]) throws IOException
+{
+int number, count=0;
+Random rand = new Random();
+PrintWriter out = new PrintWriter(new File(&quot;Random.txt&quot;));
+while(count&lt;size)
+{
+number=rand.nextInt(size)+1;
+out.println(number);
+inputArr[count]=number;
+count++;
+}
+out.close();
+System.out.println(&quot;The total numbers generated: &quot; + count );
+}
+//Method for QuickSort
+public static void quickSort(int a[],int low,int high)
+{
+int j;
+if(low&lt;high)
+{
+j= partition(a,low,high);
+quickSort(a,low,j-1);
+quickSort(a,j+1,high);
+}
+}
+//Method for Partition
+public static int partition(int a[],int low,int high)
+{
+int i,j,temp,pivot;
+pivot = a[low];
+i = low + 1;
+j = high;
+while(true)
+{
+while(i&lt;high &amp;&amp; a[i]&lt;=pivot)
+i++;
+while(a[j]&gt;pivot)
+j--;
+if(i&lt;j)
+{
+temp = a[i];
+a[i] = a[j];
+
+a[j] = temp;
+}
+else
+{
+temp = a[low];
+a[low] = a[j];
+a[j] = temp;
+return j;
+}
+}
+} 
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+Sort a given set of n integer elements using Merge Sort method and compute its time
+complexity. Run the program for varied values of n&gt;5000 and record the time taken to sort.
+Plot a graph of the time taken versus n. The elements can be read from a file or can be
+generated using the random number generator. Demonstrate using C++/Java how the
+divide-and-conquer method works along with its time complexity analysis: worst case,
+average case and best case.
+
+----------------------------------------------------------------------------------------------------------------------
+
+Program:-
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package mergesort;
+import java.util.Scanner;
+import java.util.Random;
+import java.io.*;
+/**
+*
+* @author Dell
+*/
+public class MergeSort {
+/**
+* @param args the command line arguments
+*/
+static int size; // To read size of input elements
+public static void main(String[] args) throws IOException {
+// TODO code application logic here
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the number of elements to sorted: (&gt;5000):&quot;);
+size = in.nextInt();
+//Declare an array of dimension &#39;size&#39;
+
+int inputArr [] = new int[size];
+genRandomNumbers(inputArr);
+//Sort the randomly generated numbers for best case, average case and worst case
+complexity
+long startTime = System.nanoTime();
+mergeSort(inputArr,0,size-1);
+long estimatedTime = System.nanoTime() - startTime;
+PrintWriter outA = new PrintWriter(new File(&quot;msort.txt&quot;));
+for(int i=0;i&lt;inputArr.length;i++)
+{
+outA.println(inputArr[i]);
+}
+outA.close();
+System.out.println(&quot;The time complexity for best,average and worst case is &quot; +
+(estimatedTime/1000000.0)+ &quot; ms&quot;);
+}
+// Method for random number generation
+public static void genRandomNumbers(int inputArr[]) throws IOException
+{
+int number, count=0;
+Random rand = new Random();
+PrintWriter out = new PrintWriter(new File(&quot;Mrandom.txt&quot;));
+while(count&lt;size)
+{
+number=rand.nextInt(size)+1;
+out.println(number);
+out.print(&quot; &quot;);
+inputArr[count]=number;
+count++;
+}
+out.close();
+System.out.println(&quot;The total numbers generated: &quot; + count );
+}
+public static void merge(int a[],int low,int mid,int high)
+{
+int i = low;
+int j = mid+1;
+int k = low;
+int c [] = new int[1000000];
+while(i&lt;=mid &amp;&amp; j&lt;=high)
+{
+if(a[i] &lt; a[j])
+{
+c[k] = a[i];
+i = i+1;
+k = k+1;
+}
+
+else
+{
+c[k] = a[j];
+j = j+1;
+k = k+1;
+}
+}
+while(i&lt;=mid)
+{
+c[k++] = a[i++];
+}
+while(j&lt;=high)
+{
+c[k++] = a[j++];
+}
+for(i=low;i&lt;=high;i++)
+{
+a[i] = c[i];
+}
+}
+public static void mergeSort(int a[],int low,int high)
+{
+int mid;
+if(low&lt;high)
+{
+mid = (low+high)/2;
+mergeSort(a,low,mid);
+mergeSort(a,mid+1,high);
+merge(a,low,mid,high);
+}
+}
+}
+
+-------------------------------------------------------------------------------------------------------------------
+
+4) To solve Knapsack problem using Greedy method
+
+-------------------------------------------------------------------------------------------------------------------
+
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package knapsackgreedy;
+import java.util.Scanner;
+/**
+*
+
+* @author Dell
+*/
+public class KnapsackGreedy {
+/**
+* @param args the command line arguments
+*/
+public static void main(String[] args) {
+// TODO code application logic here
+int nItems;
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the number of items: &quot;);
+nItems = in.nextInt();
+double W; /* capacity of the knapsack */
+double weight[] = new double[nItems]; // Weights of &#39;n&#39; items
+double value[] = new double[nItems]; // Values of &#39;n&#39; items
+double ratio[] = new double[nItems]; // ratio or density of &#39;n&#39;items
+System.out.println(&quot;Enter the weights of the item&quot;);
+for (int i = 0; i&lt;nItems; i++)
+weight[i] = in.nextDouble();
+System.out.println(&quot;Enter the values/profits of the item&quot;);
+for (int i = 0; i&lt;nItems; i++)
+value[i] = in.nextDouble();
+for (int i = 0; i&lt;nItems; i++)
+ratio[i] = value[i] / weight[i];
+System.out.println(&quot;Enter the Capacity of the knapsack: &quot;);
+W = in.nextDouble();
+System.out.println(&quot;\n The maximum value in a knapsack of capacity &quot; + W+ &quot; is: &quot;+
+computeMaxValue(W,weight,value,ratio));
+}
+public static double computeMaxValue(double W,double weight[],double
+value[],double ratio[])
+{
+double cW = 0; //current weight
+double cV = 0; //current value
+System.out.print(&quot;\n Items considered are: &quot;);
+while (cW&lt;W)
+{
+int item = getNextItem(weight,value,ratio);
+// getnext highest ratio
+if (item == -1)
+{
+//No items left
+break;
+}
+
+System.out.print((item+1)+&quot; &quot;);
+if (cW + weight[item] &lt;= W)
+{
+cW += weight[item];
+cV += value[item];
+//mark as used for the getNext() (ratio) function
+ratio[item] = 0;
+}
+else
+{
+cV += (ratio[item] * (W - cW));
+// Break the value and add
+cW += (W - cW);
+break; //the knapsack is full
+}
+}
+return cV;
+}
+//Method to get the next highest ratio
+public static int getNextItem(double weight[],double value[],double ratio[])
+{
+double highest = 0;
+int index = -1;
+for (int i = 0; i&lt;value.length; i++)
+{
+if (ratio[i] &gt;highest)
+{
+highest = ratio[i];
+index = i;
+}
+}
+return index;
+}
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+5) To find shortest paths to other vertices from a given vertex in a weighted connected graph,
+using Dijkstra’s algorithm.
+
+----------------------------------------------------------------------------------------------------------------
+
+Program:-
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+
+*/
+package dijkstras;
+/**
+*
+* @author Dell
+*/
+import java.util.*;
+public class Dijkstras {
+/**
+* @param args the command line arguments
+*/
+static int dist [] = new int[20];
+/* Array to store Min Distance */
+static int visited [] = new int[20];
+/* Array to keep track of visited nodes */
+static int path[] = new int[20];
+/* Array to keep track of shortest path from source node to all other
+nodes */
+static int source;
+public static void main(String[] args) {
+// TODO code application logic here
+int u,v,n;
+int w[][] = new int[20][20];
+/* 2D-array to read the values of weighted graph */
+int i,j;
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the no of nodes&quot;);
+n = in.nextInt();
+System.out.println(&quot;Enter the weight matrix&quot;);
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+w[i][j] = in.nextInt();
+}
+}
+System.out.println(&quot;Enter the source vertex&quot;);
+source = in.nextInt();
+/* Initially set all the nodes as unvisited */
+for(i=1;i&lt;=n;i++)
+{
+
+visited[i]=0;
+}
+/* Set the source node as visited */
+visited[source] = 1;
+for(i=1;i&lt;=n;i++)
+{
+dist[i] = w[source][i];
+}
+/* Initially set the shortest path from source node to all other nodes is through
+source */
+for(i=1;i&lt;=n;i++)
+{
+path[i] = source;
+}
+/* Set the shortest path to the source node as -1 */
+path[source] = -1;
+for(i=1;i&lt;n;i++)
+{
+u = minDistance(n);
+visited[u] = 1;
+v = 1;
+while(v&lt;=n)
+{
+if((dist[u] + w[u][v]&lt;dist[v]) &amp;&amp; visited[v]==0)
+{
+dist[v] = dist[u] + w[u][v];
+path[v] = u;
+}
+v++;
+}
+}
+printShortest(n);
+}
+/* Method to find next closest node to the souce node */
+public static int minDistance(int n)
+{
+int i,minDist,minIndex=0;
+minDist = 999;
+for(i=1;i&lt;=n;i++)
+{
+if(dist[i] &lt; minDist &amp;&amp; visited[i] == 0)
+{
+minDist = dist[i];
+minIndex = i;
+}
+}
+
+return minIndex;
+}
+/* Method to print shortest distance from source node to all other nodes*/
+public static void printShortest(int n)
+{
+int i;
+for(i=1;i&lt;=n;i++)
+{
+if(i!=source)
+{
+System.out.println(&quot;The shortest distance from node&quot; + source + &quot; to &quot; + i +&quot;=&quot; + dist[i]);
+System.out.print(&quot;The shortest path from node &quot; +source+ &quot; to &quot; + i +&quot; is: &quot;);
+System.out.print(source);
+printPath(path,i);
+System.out.println();
+}
+}
+}
+/*Method to print shortest path */
+public static void printPath(int path[],int j)
+{
+if(path[j]== -1)
+return ;
+printPath(path,path[j]);
+System.out.print(&quot;---&gt;&quot;+ j +&quot; &quot;);
+}
+}
+
+---------------------------------------------------------------------------------------------------------------------
+
+6) To find Minimum Cost Spanning Tree of a given connected undirected graph using Kruskal’s
+algorithm. Use Union-Find algorithms in your program.
+
+---------------------------------------------------------------------------------------------------------------------
+
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package kruskals;
+import java.util.*;
+/**
+*
+* @author Dell
+
+*/
+public class Kruskals {
+/**
+* @param args the command line arguments
+*/
+static int parent[];
+static int cost[][];
+public static void main(String[] args) {
+// TODO code application logic here
+int i,j,n,min,ne=1;
+int u=0,v=0,a=0,b=0,mincost=0;
+/* Scanner class to read values from console */
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the number of vertices/nodes in the graph&quot;);
+n = in.nextInt();
+cost = new int[n+1][n+1];
+parent= new int[n+1];
+
+System.out.println(&quot;Enter the Cost/Weight matrix&quot;);
+for(i=1;i&lt;=n;i++)
+{
+parent[i]=0;
+for(j=1;j&lt;=n;j++)
+{
+cost[i][j] = in.nextInt();
+if(cost[i][j]==0)
+cost[i][j]=999;
+}
+}
+System.out.println(&quot;The edges of Minimum spanning tree are:&quot;);
+while(ne&lt;n)
+{
+min = 999;
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+if(cost[i][j]&lt;min)
+{
+min = cost[i][j];
+a = u = i;
+b = v = j;
+}
+
+}
+}
+u = findParent(u);
+v = findParent(v);
+if(union(u,v)==1)
+{
+System.out.println(ne++ + &quot; Edge Selected (&quot; + a +&quot; --- &quot;+ b + &quot;) Cost=&quot; + min);
+mincost += min;
+}
+cost[a][b] = cost[b][a] = 999;
+}
+System.out.println(&quot;Minimum cost &quot; + mincost);
+}
+/* To find the parent of particular vertex */
+public static int findParent(int i)
+{
+while(parent[i]!=0)
+{
+i = parent[i];
+}
+return i;
+}
+/* To determine the cycle in the graph formed by selection of
+particular edge */
+public static int union(int i,int j)
+{
+if(i!=j)
+{
+parent[j]=i;
+return 1;
+}
+return 0;
+}
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+7) To find Minimum Cost Spanning Tree of a given connected undirected graph using Prim’s
+algorithm.
+
+---------------------------------------------------------------------------------------------------------------------
+
+Program:-
+/*
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
+package prims;
+import java.util.*;
+
+/**
+*
+* @author Dell
+*/
+public class Prims {
+/**
+* @param args the command line arguments
+*/
+public static void main(String[] args) {
+// TODO code application logic here
+int i,j,k,n,source;
+int w[][] = new int[50][50];
+int visited [] = new int[20];
+int minWt,totalCost=0,ev=0,sv=0;
+Scanner in = new Scanner(System.in);
+System.out.println(&quot;Enter the no of vertices/nodes in the graph&quot;);
+n = in.nextInt();
+System.out.println(&quot;Enter the weight/cost matrix&quot;);
+for(i=1;i&lt;=n;i++)
+{
+for(j=1;j&lt;=n;j++)
+{
+w[i][j] = in.nextInt();
+}
+}
+System.out.println(&quot;Enter the source vertex to start&quot;);
+source = in.nextInt();
+for(i=1;i&lt;=n;i++)
+visited[i] = 0;
+visited[source] = 1;
+System.out.println(&quot;Minimum Weight/cost edges selected for spanning tree are:&quot;);
+for(i=1;i&lt;n;i++)
+{
+minWt = 999;
+for(j=1;j&lt;=n;j++)
+{
+if(visited[j] == 1)
+{
+for(k=1;k&lt;=n;k++)
+{
+if( visited[k]!= 1 &amp;&amp; w[j][k] &lt; minWt)
+{
+sv = j;
+
+ev = k;
+minWt = w[j][k];
+}
+}
+}
+}
+totalCost += minWt;
+visited[ev] = 1;
+System.out.println(sv+ &quot; &quot; + &quot;---&gt;&quot; + &quot; &quot;+ ev + &quot; &quot; + &quot;Cost:&quot;+&quot; &quot;+ minWt);
+}
+
+System.out.println(&quot;The total cost of minimum spanning tree is &quot;+totalCost);
+}
+}
