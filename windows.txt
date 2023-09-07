@@ -1,4 +1,4 @@
-Sort a given set of n integer elements using Selection Sort method and compute its time
+1) Sort a given set of n integer elements using Selection Sort method and compute its time
 complexity. Run the program for varied values of n&gt;5000 and record the time taken to sort.
 Plot a graph of the time taken versus n. The elements can be read from a file or can be
 generated using the random number generator. Demonstrate using C++/Java how the brute
@@ -191,7 +191,7 @@ return j;
 
 -------------------------------------------------------------------------------------------------------------------
 
-Sort a given set of n integer elements using Merge Sort method and compute its time
+3) Sort a given set of n integer elements using Merge Sort method and compute its time
 complexity. Run the program for varied values of n&gt;5000 and record the time taken to sort.
 Plot a graph of the time taken versus n. The elements can be read from a file or can be
 generated using the random number generator. Demonstrate using C++/Java how the
