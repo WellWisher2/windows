@@ -583,69 +583,73 @@ public class Prims {
 
 package knapsackdp;
 import java.util.Scanner;
-
+/**
+ *
+ * @author 
+ */
 public class KnapSackDP {
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int i;
+ int n; // No of items
+ int W; // Capacity of the knapSack
+ int wt[] = new int[10]; // Weights of 'n' items
+ int val[] = new int[10]; // Values of 'n' items
 
-public static void main(String[] args) {
+ Scanner in = new Scanner(System.in);
+ System.out.println("Enter the no of items");
+ n = in.nextInt();
 
-int i;
-int n; 
-int W; 
-int wt[] = new int[10]; 
-int val[] = new int[10]; 
+ System.out.println("Enter the weight of the items");
+ for(i=1;i<=n;i++)
+ {
+ wt[i] = in.nextInt();
+ }
 
-Scanner in = new Scanner(System.in);
+ System.out.println("Enter the value of the items");
+ for(i=1;i<=n;i++)
+ {
+ val[i] = in.nextInt();
+ }
 
-System.out.println(&quot;Enter the no of items&quot;);
-n = in.nextInt();
+ System.out.println("Enter the capacity of the knapsack");
+ W = in.nextInt();
 
-System.out.println(&quot;Enter the weight of the items&quot;);
-for(i=1;i&lt;=n;i++)
-{
-wt[i] = in.nextInt();
+ System.out.println("The maximum value in knapsack of capacity " + W +
+" is: "+knapSack(W, wt, val, n));
 }
-
-System.out.println(&quot;Enter the value of the items&quot;);
-for(i=1;i&lt;=n;i++)
-{
-val[i] = in.nextInt();
-}
-
-System.out.println(&quot;Enter the capacity of the knapsack&quot;);
-W = in.nextInt();
-
-System.out.println(&quot;The maximum value in knapsack of capacity &quot; + W +
-&quot; is: &quot;+knapSack(W, wt, val, n));
-}
-
+// Returns the maximum value that can be put in a knapsack of capacity W
 public static int knapSack(int W, int wt[], int val[], int n)
 {
 int i, j;
 int v[][] = new int[n+1][W+1];
-
-
-for (i = 0; i &lt;= n; i++)
+// Build table v[][] in bottom up manner
+for (i = 0; i <= n; i++)
 {
-
-for (j = 0; j &lt;= W; j++)
-{
+ // j is the temporary capacity of knapsack during table building
+ for (j = 0; j <= W; j++)
+ {
 if (i==0 || j==0)
-v[i][j] = 0;
-else if (j-wt[i]&lt;0)
-v[i][j] = v[i-1][j];
+ v[i][j] = 0;
+else if (j-wt[i]<0)
+ v[i][j] = v[i-1][j];
 else
-v[i][j] = max(v[i-1][j],val[i] + v[i-1][j-wt[i]]);
-}
+ v[i][j] = max(v[i-1][j],val[i] + v[i-1][j-wt[i]]);
+ }
 }
 return v[n][W];
-}
-public static int max(int a, int b)
-{
-return (a &gt; b)? a : b;
+ }
+ public static int max(int a, int b)
+ {
+ return (a > b)? a : b; 
+    }
+    
 }
 
-}
 
 ---------------------------------------------------------------------------------------------------------------------
 
@@ -656,62 +660,65 @@ given problem instance doesn&#39;t have a solution.
 
 ---------------------------------------------------------------------------------------------------------------------
 
+
 package subset;
 import java.util.Scanner;
 public class Subset {
-static int x[] = new int[20];
-static int s[] = new int[20];
-static int d,flag=0;
-public static void main(String[] args) {
-
-int i,n,sum=0;
-Scanner in = new Scanner(System.in);
-System.out.println(&quot;Enter the no of elements&quot;);
-n = in.nextInt();
-System.out.println(&quot;Enter the elements&quot;);
-for(i=1;i&lt;=n;i++)
-s[i] = in.nextInt();
-System.out.println(&quot;Enter the value of d:&quot;);
-d = in.nextInt();
-for(i=1;i&lt;=n;i++) {
-sum = sum + s[i];
+    static int x[] = new int[20];
+    static int s[] = new int[20];
+    static int d,flag=0;
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int i,n,sum=0;
+ Scanner in = new Scanner(System.in);
+ System.out.println("Enter the no of elements");
+ n = in.nextInt();
+ System.out.println("Enter the elements");
+ for(i=1;i<=n;i++)
+ s[i] = in.nextInt();
+ System.out.println("Enter the value of d:");
+ d = in.nextInt();
+ for(i=1;i<=n;i++) {
+ sum = sum + s[i];
+ }
+ // Check for the problem instance not having the solution
+ if(sum<d || s[1]>d) {
+ System.out.println("The given problem instance does not
+have a solution");
+ System.exit(0);
+ }
+ else{
+ System.out.println("Subsets are:");
+ SumofSub(0,1,sum);
+ }
+ if(flag ==0)
+ {
+ System.out.println("No subset possible");
+ System.exit(0);
+ } }
+ // Method to Calculate the Subset Sum
+ public static void SumofSub(int m,int k,int r)
+ {
+ int i;
+ x[k] = 1;
+ if(m+s[k] == d)
+ {
+ flag =1;
+ System.out.print("{");
+ for(i=1;i<=k;i++) {
+     if(x[i] == 1)
+ System.out.print(s[i] + " ");
+ }
+ System.out.print("}\n");
+ }
+ else if((m+s[k]+s[k+1])<= d)
+ SumofSub(m+s[k],k+1,r-s[k]);
+ if((m+r-s[k]>=d) && (m+s[k+1]<=d)) {
+ x[k]=0;
+ SumofSub(m,k+1,r-s[k]);
+ }
+ }
 }
 
-if(sum&lt;d || s[1]&gt;d) {
-System.out.println(&quot;The given problem instance does not
-have a solution&quot;);
-System.exit(0);
-}
-else{
-System.out.println(&quot;Subsets are:&quot;);
 
-SumofSub(0,1,sum);
-}
-if(flag ==0)
-{
-System.out.println(&quot;No subset possible&quot;);
-System.exit(0);
-} }
 
-public static void SumofSub(int m,int k,int r)
-{
-int i;
-x[k] = 1;
-if(m+s[k] == d)
-{
-flag =1;
-System.out.print(&quot;{&quot;);
-for(i=1;i&lt;=k;i++) {
-if(x[i] == 1)
-System.out.print(s[i] + &quot; &quot;);
-}
-System.out.print(&quot;}\n&quot;);
-}
-else if((m+s[k]+s[k+1])&lt;= d)
-SumofSub(m+s[k],k+1,r-s[k]);
-if((m+r-s[k]&gt;=d) &amp;&amp; (m+s[k+1]&lt;=d)) {
-x[k]=0;
-SumofSub(m,k+1,r-s[k]);
-}
-}
-}
